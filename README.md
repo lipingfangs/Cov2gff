@@ -1,5 +1,5 @@
 # Covmonkey2gff
-Covmonkey2gff pipeline for annotation of Sars-cov-2 
+Covmonkey2gff pipeline for annotation of Sars-cov-2 genomic
 
 #You can operate this pipeline rely on the software Blast and Genewise
 
