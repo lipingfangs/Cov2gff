@@ -105,7 +105,7 @@ clines = list(cfile.readlines())
 for i in clines:
     i = i.split("	")
     outfile = open(yourdir +"/" + n +"_"+ i[1] + ".fa","w")
-    seq_select(int(i[2]),int(i[3]),seqlines,i[1],n,outfile)
+    seq_select(int(i[2])-2,int(i[3])+1,seqlines,i[1],n,outfile)
     outfile.close()
 
     
