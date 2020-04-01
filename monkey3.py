@@ -112,6 +112,8 @@ for i in clines:
 for i in listinside:
     command2 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  "  -pep> " + yourdir +"/" + i +".pep"
     command3 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  "   -gff > " + yourdir +"/" + i +".gff"
+    command6 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  "   -cdna > " + yourdir +"/" + i +"cdna.fa"
+    os.system(command6)
     os.system(command2)
     os.system(command3)
 
