@@ -23,6 +23,9 @@ yourdir = sys.argv[1]
 yourblastdir = sys.argv[2]
 yourgenewisedir = sys.argv[3]
 
+coman = "mkdir blastout"
+os.system(coman)
+
 mylist = os.listdir(yourdir)
 for i in mylist:
     infile = i.strip()
