@@ -94,17 +94,23 @@ def selection2(yourdir,infile,listinside):
             i = i.split("	")
             print(i)
             dic[i[0].strip()] = i[1].strip()
+            
     for j in listinside:
         ginfile = open(yourdir + "/" + j +"splitret.txt","r")
-        ginfileline = list(ginfile)
-        if abs(int(len(ginfileline[1]))/int(dic[j])) > 1.1 or abs(int(len(ginfileline[1]))/int(dic[j])) < 0.9:
+        ginfileline = list(ginfile.readlines())
+        dictt={}
+        temp = ""
+        for i in ginfileline:
+            if i.startswith(">"):
+                temp = i.strip()
+                dictt[temp] = ""
+            else:
+                i = i.strip()
+                dictt[temp] = dictt[temp] + i        
+        
+        
+        if abs(int(len(dictt[temp])/int(dic[j])) > 1.1 or abs(int(len(dictt[temp]))/int(dic[j])) < 0.9:
             f = open(yourdir + "/" + infile + "_end_genewise.gff","w")
             print("error!",file = f)
             f.close()
             break
-        
-        
-        
-            
-            
- 
