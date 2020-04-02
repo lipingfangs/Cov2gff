@@ -131,5 +131,5 @@ commandclean = "rm " + yourdir + "/Q*  " + yourdir + "/in.fa_genewise.gff  " + y
 os.system(commandclean)
 
 testgo =  yourdir + "/" + infile + "_end_genewise.gff"           
-selection1(testgo,yourdir,infile)
+selection1(testgo,yourdir,infile,listinside)
 selection2(yourdir,infile,listinside)
