@@ -83,7 +83,7 @@ def selection1(testgo,yourdir,infile,listinside):
     selectfile.close()
     if temp > len(listinside) or temp < len(listinside):
         f = open(testgo,"w")
-        print("error!",file = f)
+        print("error! Broken genes(selection1)",file = f)
         sys.exit()
         f.close()
         
@@ -99,19 +99,14 @@ def selection2(yourdir,infile,listinside):
         ginfile = open(yourdir + "/" + j +"splitret.txt","r")
         ginfileline = list(ginfile.readlines())
         dictt={}
-        temp = ""
+        temp = j
         for i in ginfileline:
-            if i.startswith(">"):
-                temp = i.strip()
-                dictt[temp] = ""
-            else:
-                i = i.strip()
-                dictt[temp] = dictt[temp] + i        
+            dictt[temp] = dictt[temp] + i.strip()        
         
         
         if abs(int(len(dictt[temp]))/int(dic[j])) > 1.1 or abs(int(len(dictt[temp]))/int(dic[j])) < 0.9:
             f = open(yourdir + "/" + infile + "_end_genewise.gff","w")
-            print("error!",file = f)
+            print("error! too many difference(selection2)",file = f)
             f.close()
             break
         ginfile.close()
