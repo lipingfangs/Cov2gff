@@ -109,7 +109,7 @@ def selection2(yourdir,infile,listinside):
                 dictt[temp] = dictt[temp] + i        
         
         
-        if abs(int(len(dictt[temp])/int(dic[j])) > 1.1 or abs(int(len(dictt[temp]))/int(dic[j])) < 0.9:
+        if abs(int(len(dictt[temp]))/int(dic[j])) > 1.1 or abs(int(len(dictt[temp]))/int(dic[j])) < 0.9:
             f = open(yourdir + "/" + infile + "_end_genewise.gff","w")
             print("error!",file = f)
             f.close()
