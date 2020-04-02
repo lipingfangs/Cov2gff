@@ -114,3 +114,4 @@ def selection2(yourdir,infile,listinside):
             print("error!",file = f)
             f.close()
             break
+        ginfile.close()
