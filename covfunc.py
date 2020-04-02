@@ -84,6 +84,7 @@ def selection1(testgo,yourdir,infile,listinside):
     if temp > len(listinside) or temp < len(listinside):
         f = open(testgo,"w")
         print("error!",file = f)
+        sys.exit()
         f.close()
         
 def selection2(yourdir,infile,listinside):
@@ -94,7 +95,7 @@ def selection2(yourdir,infile,listinside):
             print(i)
             dic[i[0].strip()] = i[1].strip()
     for j in listinside:
-        ginfile = open(yourdir + "/" + infile +"_" + j +".fa","r")
+        ginfile = open(yourdir + "/" + j +"splitret.txt","r")
         ginfileline = list(ginfile)
         if abs(int(len(ginfileline[1]))/int(dic[j])) > 1.1 or abs(int(len(ginfileline[1]))/int(dic[j])) < 0.9:
             f = open(yourdir + "/" + infile + "_end_genewise.gff","w")
