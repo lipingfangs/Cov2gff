@@ -126,9 +126,9 @@ for i in list(genewisegfflist):
 genewisegffout.close()
 genewisegff.close()
 
-commandclean = "rm " + yourdir + "/Q*  " + yourdir + "/in.fa_genewise.gff  " + yourdir + "/in.fa.gff"
+#commandclean = "rm " + yourdir + "/Q*  " + yourdir + "/in.fa_genewise.gff  " + yourdir + "/in.fa.gff"
 #commandclean2 = "rm -rf blastout"
-os.system(commandclean)
+#os.system(commandclean)
 
 testgo =  yourdir + "/" + infile + "_end_genewise.gff"           
 selection1(testgo,yourdir,infile,listinside)
