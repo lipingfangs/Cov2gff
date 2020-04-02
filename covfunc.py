@@ -100,6 +100,7 @@ def selection2(yourdir,infile,listinside):
         ginfileline = list(ginfile.readlines())
         dictt={}
         temp = j
+        dictt[temp] = ""
         for i in ginfileline:
             dictt[temp] = dictt[temp] + i.strip()        
         
