@@ -63,18 +63,12 @@ for m in mylist:
     #print(dic)    
     file.close()
 
-    listinside = ["QHD43415.1_1",
-    "QHD43415.1_2",
-    "QHD43416.1",
-    "QHD43417.1",
-    "QHD43418.1",
-    "QHD43419.1",
-    "QHD43420.1",
-    "QHD43421.1",
-    "QHD43422.1",
-    "QHD43423.2",
-    "QHI42199.1"
-    ]
+    with open("database/genenamelist.txt","r") as listinsidefile:
+        listinside = list(listinsidefile.readlines())
+        for i in range(len(listinside)):
+            listinside[i] = listinside[i].strip()
+        print(listinside)
+#
     line = list(dic.keys())
 
     with open(yourdir +"/" + m +".gff","w") as f :
@@ -99,13 +93,17 @@ for i in clines:
     
 for i in listinside:
     #command2 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  "  -pep> " + yourdir +"/" + i +".pep"
-    command3 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  "   -gff > " + yourdir +"/" + i +".gff"
-    command6 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  "   -cdna > " + yourdir +"/" + i +"cdna.fa"
-    os.system(command6)
-    #os.system(command2)
+    command3 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  " -quiet -kbyte 500000 -tfor  -gff -cdna > " + yourdir +"/" + i +".genewise.out"
+    #command6 = yourgenewisedir +"/genewise  ./database/" + i + " "+ yourdir +"/*" + i + ".fa" +  "   -cdna > " + yourdir +"/" + i +"cdna.fa"
+    print(command3);
     os.system(command3)
+    #os.system(command2)
+    #os.system(command3)
+    command = "cat " + yourdir +"/" + i +".genewise.out | awk '/\/\/?/{b=0;n++}{if (b==0) {b=1} else{print $0 > \"" + yourdir +"/" + i +"splitret" + '"n"' + '.txt"} }' + "'"
+    print(command);
+    os.system(command);
 
-command4 = "cat " + yourdir + "/QHD*gff > " + yourdir + "/" + infile + "_genewise.gff"   
+command4 = "cat " + yourdir + "/QHD*splitret1.txt > " + yourdir + "/" + infile + "_genewise.gff"    #need to translate the coordinates!
 os.system(command4)    
 
 genewisegff = open(yourdir + "/" + infile + "_genewise.gff","r")
@@ -118,10 +116,13 @@ for i in list(genewisegfflist):
         i[3] = str(int(i[3]) + int(q))
         i[4] = str(int(i[4]) + int(q))
         i = '	'.join(i)
-        print(i,file = genewisegffout)
+        print(i,end = "", file = genewisegffout)
 genewisegffout.close()
 genewisegff.close()
 
+commandclean = "rm goin/Q* goin/in.fa_genewise.gff goin/in.fa.gff"
+#commandclean2 = "rm -rf blastout"
+os.system(commandclean)
             
         
 
