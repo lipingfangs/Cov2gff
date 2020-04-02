@@ -73,7 +73,7 @@ def seq_select(goin,endin,allreal,gggg,m,k):
     return ">"+m+str(gggg)+"-"+ str(goin)+"-"+str(endin)+dicout
 
 
-def selection1(testgo,yourdir,infile):
+def selection1(testgo,yourdir,infile,listinside):
     selectfile = open(testgo,"r")
     temp = 0
     for i in list(selectfile.readlines()):
@@ -81,7 +81,7 @@ def selection1(testgo,yourdir,infile):
         if i[2].strip() == "cds":
             temp = temp + 1
     selectfile.close()
-    if temp > 11:
+    if temp > len(listinside):
         f = open(testgo,"w")
         print("error!",file = f)
         f.close()
