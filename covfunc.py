@@ -81,7 +81,7 @@ def selection1(testgo,yourdir,infile,listinside):
         if i[2].strip() == "cds":
             temp = temp + 1
     selectfile.close()
-    if temp > len(listinside):
+    if temp > len(listinside) or temp < len(listinside):
         f = open(testgo,"w")
         print("error!",file = f)
         f.close()
