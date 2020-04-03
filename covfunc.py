@@ -10,15 +10,15 @@ def seqfr(yourdir,yourblastdir):
              't': 'a',
              'g': 'c',
             'c': 'g',"N":"N","n":"n"}
-    mylist = os.listdir(yourdir)
+    mylist = ['in.fa']; #os.listdir(yourdir)
     for i in mylist:
         infile = i.strip()
-        command =  yourblastdir + "/blastx -query " + yourdir+"/"+infile + " -db ./database/sarscov2 -evalue 1e-5 -num_threads 32  -outfmt 6 -out ./blastout/" + i+"_test"
+        command =  yourblastdir + "/blastx -query " + yourdir+"/"+infile + " -db ./database/sarscov2 -evalue 1e-5  -outfmt 6 -out " + yourdir + "/blastout/" + i+"_test"
         print(command)
         os.system(command)
 
     for m in mylist:
-        file = open("blastout/"+ m +"_test","r")
+        file = open(yourdir +"/blastout/"+ m +"_test","r")
         lines = file.readlines()
         lines = list(lines)
         dic={}
@@ -84,7 +84,7 @@ def selection1(testgo,yourdir,infile,listinside):
     if temp > len(listinside) or temp < len(listinside):
         f = open(testgo,"w")
         print("error! Broken genes(selection1)",file = f)
-        sys.exit()
+        sys.exit(1)
         f.close()
         
 def selection2(yourdir,infile,listinside):
@@ -109,5 +109,6 @@ def selection2(yourdir,infile,listinside):
             f = open(yourdir + "/" + infile + "_end_genewise.gff","w")
             print("error! too many difference(selection2)",file = f)
             f.close()
+            sys.exit(2)
             break
         ginfile.close()
