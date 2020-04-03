@@ -7,8 +7,6 @@ yourdir = sys.argv[1]
 yourblastdir = sys.argv[2]
 yourgenewisedir = sys.argv[3]
 
-coman = "mkdir blastout"
-os.system(coman)
 
 seqfr(yourdir,yourblastdir)
 
@@ -16,8 +14,10 @@ seqfr(yourdir,yourblastdir)
 
 mylist = os.listdir(yourdir)
 for i in mylist:
+    coman = "mkdir "+ yourdir + "/blastout"
+    os.system(coman)
     infile = i.strip()
-    command =  yourblastdir + "/blastx -query " + yourdir+"/"+infile + " -db ./database/sarscov2 -evalue 1e-5 -num_threads 32  -outfmt 6 -out ./blastout/" + i
+    command =  yourblastdir + "/blastx -query " + yourdir+"/"+infile + " -db ./database/sarscov2 -evalue 1e-5 -num_threads 32  -outfmt 6 -out  yourdir + "/blastout/" + i
     print(command)
     os.system(command)
     
