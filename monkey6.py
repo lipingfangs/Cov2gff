@@ -7,23 +7,28 @@ yourdir = sys.argv[1]
 yourblastdir = sys.argv[2]
 yourgenewisedir = sys.argv[3]
 
+coman = "mkdir -p " + yourdir + "/blastout"
+print(coman);
+os.system(coman)
 
 seqfr(yourdir,yourblastdir)
 
-
-
-mylist = os.listdir(yourdir)
+mylist = ['in.fa']; #os.listdir(yourdir)
 for i in mylist:
-    coman = "mkdir "+ yourdir + "/blastout"
-    os.system(coman)
     infile = i.strip()
-    command =  yourblastdir + "/blastx -query " + yourdir+"/"+infile + " -db ./database/sarscov2 -evalue 1e-5 -num_threads 32  -outfmt 6 -out  yourdir + "/blastout/" + i
+    if (infile != "in.fa"):
+        print(infile + " found in folder");
+        continue;
+
+    command =  yourblastdir + "/blastx -query " + yourdir+"/"+infile + " -db ./database/sarscov2 -evalue 1e-5 -outfmt 6 -out " + yourdir + "/blastout/" + i
     print(command)
     os.system(command)
+
+
     
 
 for m in mylist:
-    file = open("blastout/"+ m,"r")
+    file = open(yourdir +"/blastout/"+ m,"r")
     lines = file.readlines()
     lines = list(lines)
     dic={}
